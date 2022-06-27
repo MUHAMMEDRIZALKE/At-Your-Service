@@ -1,0 +1,15 @@
+{% extends "atYourService/base.html" %}
+{% block content %}
+
+
+{% if user.is_authenticated %}
+    <h1> Home Page</h1>
+    <h5> Welcome {{ client.Name }}!</h5>
+    <p>Username = {{ client.UserName }} <br>
+        Your phone number = {{ client.PhoneNumber }} <br>
+        Date Joined = {{ client.DateJoined }}</p>
+{% else %}
+    <h5>You are not logged in. <a href="{% url 'login' %}">Please Loggin</a> </h5>
+{% endif %}
+
+{% endblock content %}
