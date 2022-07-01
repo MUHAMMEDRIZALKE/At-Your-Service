@@ -6,7 +6,7 @@ from django.core.validators import RegexValidator
 # Create your models here.
 
 class Client(models.Model):
-    UserName = models.OneToOneField(User, on_delete=models.CASCADE)
+    Username = models.OneToOneField(User, on_delete=models.CASCADE)
     Name = models.CharField(max_length=100, null=False, default="")
     phoneNumberRegex = RegexValidator(regex=r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")  # indian phone number validator
     PhoneNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True, null=False)
@@ -14,4 +14,4 @@ class Client(models.Model):
 
     def __str__(self):
         # return self.Name + ", " + self.PhoneNumber + ", " + str(self.Date_joined)
-        return str(self.Name)
+        return f'{self.Name}'

@@ -5,6 +5,7 @@ from atYourService.models import Client
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.password_validation import *
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -27,7 +28,7 @@ def user_register(request):
                     pass
 
                 newUser = User.objects.create_user(username=username, password=password)
-                newClient = Client.objects.create(UserName=newUser, Name=name, PhoneNumber=phoneNumber)
+                newClient = Client.objects.create(Username=newUser, Name=name, PhoneNumber=phoneNumber)
 
                 messages.success(request, f"Your account has been created!")
 
@@ -38,3 +39,8 @@ def user_register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'users/user_register.html', {'form': form, 'title': "Join"})
+
+
+@login_required()
+def profile(request):
+    return render(request, 'users/profile.html')
