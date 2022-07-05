@@ -1,4 +1,4 @@
-from django.db import models
+from django.contrib.gis.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 
@@ -15,3 +15,16 @@ class Client(models.Model):
     def __str__(self):
         # return self.Name + ", " + self.PhoneNumber + ", " + str(self.Date_joined)
         return f'{self.Name}'
+
+
+class Worker(models.Model):
+    Username = models.OneToOneField(User, on_delete=models.CASCADE)
+    Name = models.CharField(max_length=100)
+    phoneNumberRegex = RegexValidator(regex=r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")  # indian phone number validator
+    PhoneNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True, null=False)
+    whatsappNumberRegex = RegexValidator(regex=r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")  # indian phone number validator
+    whatsappNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True, null=False)
+    yearsOfExperience = models.DecimalField(max_digits=5, decimal_places=1)
+    Location = models.PointField()
+    DateJoined = models.DateTimeField(auto_now_add=True)
+

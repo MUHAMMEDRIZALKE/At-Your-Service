@@ -13,6 +13,25 @@
         Your phone number = {{ user.client.PhoneNumber }} <br>
         Date Joined = {{ user.client.DateJoined }}</p>
 
+<!--    ______________________________________________________________-->
+
+    <h1>Nearby Workers with in 10KM</h1>
+    {% if workers %}
+    <ul>
+    {% for worker in workers %}
+        {% if worker.Name == name %}
+        <li>
+            <p>Name: {{ worker.Name }}<br>Distance {{worker.distance.km}}KM <br>Phone Number : {{worker.PhoneNumber}}</p>
+        </li>
+        {%endif%}
+    {% endfor %}
+    </ul>
+    {% else %}
+        <p>No workers available</p>
+    {% endif %}
+
+<!--    _____________________________________________________________________-->
+
 {% else %}
     <h5>You are not logged in. <a href="{% url 'login' %}">Please Login</a> </h5>
 {% endif %}
