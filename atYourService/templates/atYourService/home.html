@@ -3,25 +3,27 @@
 
 
 {% if user.is_authenticated %}
-    <h1> Home Page</h1>
+<!--    <h1> Home Page</h1>-->
 <!--    <h5> Welcome {{ client.Name }}!</h5>-->
 <!--    <p>Username = {{ client.Username }} <br>-->
 <!--        Your phone number = {{ client.PhoneNumber }} <br>-->
 <!--        Date Joined = {{ client.DateJoined }}</p>-->
-    <h5> Welcome {{ user.client.Name }}!</h5>
-    <p>Username = {{ user.username }} <br>
-        Your phone number = {{ user.client.PhoneNumber }} <br>
-        Date Joined = {{ user.client.DateJoined }}</p>
+
+
+<!--    <h1> Welcome {{ user.client.Name }}!</h1>-->
+<!--    <p>Username = {{ user.username }} <br>-->
+<!--        Your phone number = {{ user.client.PhoneNumber }} <br>-->
+<!--        Date Joined = {{ user.client.DateJoined }}</p>-->
 
 <!--    ______________________________________________________________-->
 
-    <h1>Nearby Workers with in 10KM</h1>
+    <h2>Nearby Workers with in 10KM</h2>
     {% if workers %}
     <ul>
     {% for worker in workers %}
-        {% if worker.Name == name %}
+        {% if worker.profession == profession %}
         <li>
-            <p>Name: {{ worker.Name }}<br>Distance {{worker.distance.km}}KM <br>Phone Number : {{worker.PhoneNumber}}</p>
+            <p>Name: {{ worker.Name }}<br>Profession: {{worker.profession}}<br>Distance {{worker.distance.km}}KM <br>Phone Number : {{worker.PhoneNumber}}</p>
         </li>
         {%endif%}
     {% endfor %}

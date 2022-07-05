@@ -18,8 +18,21 @@ class Client(models.Model):
 
 
 class Worker(models.Model):
+    
+    pro_choice = (
+        ('mechanic', 'MECHANIC'),
+        ('electrician', 'ELECTRICIAN'),
+        ('plumber', 'PLUMBER'),
+        ('domestic Worker', 'DOMESTIC WORKER'),
+        ('cook', 'COOK'),
+        ('driver', 'DRIVER'),
+        ('gardener', 'GARDENER'),
+        ('saloon', 'SALOON'),
+    )
+    
     Username = models.OneToOneField(User, on_delete=models.CASCADE)
     Name = models.CharField(max_length=100)
+    profession = models.CharField(max_length=30, choices=pro_choice, default='electrician')
     phoneNumberRegex = RegexValidator(regex=r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")  # indian phone number validator
     PhoneNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True, null=False)
     whatsappNumberRegex = RegexValidator(regex=r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")  # indian phone number validator

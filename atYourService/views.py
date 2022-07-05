@@ -39,12 +39,11 @@ class Home(generic.ListView):
         distance=Distance('Location', user_location)).order_by('distance')[0:6]
     template_name = 'atYourService/home.html'
 
-    # name = "Muhammed Rizal K E"    # for testing
-    name = "test user"  # for testing
+    profession = 'electrician'
 
     def get_context_data(self, **kwargs):
         context = super(Home, self).get_context_data(**kwargs)
-        context.update({'name': self.name})
+        context.update({'profession': self.profession})
         return context
 
 
