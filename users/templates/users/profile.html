@@ -3,7 +3,13 @@
 {% block content %}
     <h1>{{ user.username }}</h1>
 <!--    <h2>{{ user.DateJoined }}</h2>-->
-    <p>Username = {{ user.username }} <br>
-        Your phone number = {{ user.client.PhoneNumber }} <br>
-        Date Joined = {{ user.client.DateJoined }}</p>
+    {% if user.client %}
+        <p>Username = {{ user.username }} <br>
+            Your phone number = {{ user.client.PhoneNumber }} <br>
+            Date Joined = {{ user.client.DateJoined }}</p>
+    {% else %}
+        <p>Username = {{ user.username }} <br>
+            Your phone number = {{ user.worker.PhoneNumber }} <br>
+            Date Joined = {{ user.worker.DateJoined }}</p>
+    {% endif %}
 {% endblock content %}

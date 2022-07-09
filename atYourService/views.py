@@ -39,7 +39,7 @@ class Home(generic.ListView):
         distance=Distance('Location', user_location)).order_by('distance')[0:6]
     template_name = 'atYourService/home.html'
 
-    profession = 'electrician'
+    profession = 'mechanic'
 
     def get_context_data(self, **kwargs):
         context = super(Home, self).get_context_data(**kwargs)

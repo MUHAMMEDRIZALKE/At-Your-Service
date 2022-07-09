@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+    'leaflet',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'ays-home'
 LOGIN_URL = 'login'
+
+LEAFLET_CONFIG = {'DEFAULT_CENTER': (9.7, 76.7),  # Latitude ,  Longitude
+                  'DEFAULT_ZOOM': 9,
+                  'MAX_ZOOM': 28,
+                  'MIN_ZOOM': 1,
+                  'SCALE': 'both',
+                  # 'TILES': [],
+                  }
