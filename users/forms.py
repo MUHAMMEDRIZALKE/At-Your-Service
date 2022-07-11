@@ -18,21 +18,21 @@ class UserRegisterForm(forms.Form):
 
 
 class ProfessionalRegistrationForm(forms.Form):
-    # pro_choice = (
-    #     ('mechanic', 'MECHANIC'),
-    #     ('electrician', 'ELECTRICIAN'),
-    #     ('plumber', 'PLUMBER'),
-    #     ('domestic Worker', 'DOMESTIC WORKER'),
-    #     ('cook', 'COOK'),
-    #     ('driver', 'DRIVER'),
-    #     ('gardener', 'GARDENER'),
-    #     ('saloon', 'SALOON'),
-    # )
+    pro_choice = (
+        ('mechanic', 'MECHANIC'),
+        ('electrician', 'ELECTRICIAN'),
+        ('plumber', 'PLUMBER'),
+        ('domestic Worker', 'DOMESTIC WORKER'),
+        ('cook', 'COOK'),
+        ('driver', 'DRIVER'),
+        ('gardener', 'GARDENER'),
+        ('saloon', 'SALOON'),
+    )
 
     Username = forms.CharField(max_length=100)
     Name = fm.CharField(max_length=100)
     Password = forms.CharField(max_length=100, widget=forms.PasswordInput)
-    profession = fm.CharField(max_length=30)
+    profession = fm.CharField(max_length=30, widget=forms.Select(choices=pro_choice))
     phoneNumberRegex = RegexValidator(regex=r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")  # indian phone number validator
     PhoneNumber = fm.CharField(validators=[phoneNumberRegex], max_length=16)
     whatsappNumberRegex = RegexValidator(regex=r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")  # indian phone number validator
