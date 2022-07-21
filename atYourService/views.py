@@ -55,9 +55,10 @@ def Home(request):
             try:
                 profession = form.cleaned_data.get('Profession')
                 user_location = form.cleaned_data.get('location')
+                radius = form.cleaned_data.get('radius')
 
-                workers = Worker.objects.filter(Location__dwithin=(user_location, 0.1)).filter(  # 0.1 for 11.1km
-                    Location__distance_lte=(user_location, D(km=10))).annotate(  # distance 10km
+                workers = Worker.objects.filter(Location__dwithin=(user_location, 1.1)).filter(  # 0.1 for 11.1km
+                    Location__distance_lte=(user_location, D(km=radius))).annotate(  # distance 10km
                     distance=Distance('Location', user_location)).order_by('distance')[0:6]
 
                 context = {'form': form,

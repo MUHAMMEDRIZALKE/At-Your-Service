@@ -16,3 +16,4 @@ class UserForm(forms.Form):
 
     Profession = forms.CharField(widget=forms.Select(choices=jobs))
     location = forms.PointField(widget=LeafletWidget())
+    radius = forms.IntegerField()
