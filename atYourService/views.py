@@ -75,6 +75,7 @@ def home(request):
                            'profession': profession,
                            # 'usr_loc': user_location,
                            'counter': Counter(),
+                           'radius': radius,
                            }
 
                 return render(request, 'atYourService/home.html', context)
