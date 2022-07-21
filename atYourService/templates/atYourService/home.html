@@ -39,7 +39,7 @@
     {% for worker in workers %}
         {% if worker.profession == profession %}
         <li>
-            <p>Name: {{ worker.Name }}<br>Profession: {{worker.profession}}<br>Distance {{worker.distance.km}}KM <br>Phone Number : {{worker.PhoneNumber}}</p>
+            <p>Name: {{ worker.Name }}<br>Profession: {{worker.profession}}<br>Distance {{worker.distance.km}}KM <br>Phone Number : {{worker.PhoneNumber}}<br> Years of Experience : {{worker.yearsOfExperience}}</p>
         </li>
         {%endif%}
     {% endfor %}

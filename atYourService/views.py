@@ -63,7 +63,8 @@ def Home(request):
                 context = {'form': form,
                            'workers': workers,
                            'profession': profession,
-                           'usr_loc': user_location}
+                           'usr_loc': user_location,
+                           }
 
                 return render(request, 'atYourService/home.html', context)
 
