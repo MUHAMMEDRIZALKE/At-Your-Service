@@ -1,15 +1,15 @@
 from django.shortcuts import render
-from django.views import generic
-from django.contrib.gis.geos import fromstr
 from django.contrib.gis.db.models.functions import Distance
 from .models import Worker
-from django.contrib.gis.geos import Point
-
 from .forms import UserForm
-
 from django.contrib.gis.measure import Distance as D  # needed for the queryset
-
 from django.contrib import messages
+
+
+########################################################################################################################
+# from django.views import generic
+# from django.contrib.gis.geos import fromstr
+# from django.contrib.gis.geos import Point
 # from django.http import HttpResponse
 
 
@@ -47,8 +47,17 @@ from django.contrib import messages
 #         context.update({'profession': self.profession})
 #         return context
 
-########################################################################################
-def Home(request):
+########################################################################################################################
+
+class Counter:
+    count = 0
+
+    def increment(self):
+        self.count += 1
+        return ''
+
+
+def home(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
@@ -64,7 +73,8 @@ def Home(request):
                 context = {'form': form,
                            'workers': workers,
                            'profession': profession,
-                           'usr_loc': user_location,
+                           # 'usr_loc': user_location,
+                           'counter': Counter(),
                            }
 
                 return render(request, 'atYourService/home.html', context)
@@ -75,6 +85,7 @@ def Home(request):
     else:
         form = UserForm()
     return render(request, 'atYourService/home.html', {'form': form})
+
 
 #####################################################################################
 

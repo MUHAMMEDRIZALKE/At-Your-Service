@@ -23,7 +23,7 @@ class Worker(models.Model):
         ('mechanic', 'MECHANIC'),
         ('electrician', 'ELECTRICIAN'),
         ('plumber', 'PLUMBER'),
-        ('domestic Worker', 'DOMESTIC WORKER'),
+        ('domestic worker', 'DOMESTIC WORKER'),
         ('cook', 'COOK'),
         ('driver', 'DRIVER'),
         ('gardener', 'GARDENER'),

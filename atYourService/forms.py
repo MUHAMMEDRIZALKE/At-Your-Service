@@ -7,7 +7,7 @@ class UserForm(forms.Form):
         ('mechanic', 'MECHANIC'),
         ('electrician', 'ELECTRICIAN'),
         ('plumber', 'PLUMBER'),
-        ('domestic Worker', 'DOMESTIC WORKER'),
+        ('domestic worker', 'DOMESTIC WORKER'),
         ('cook', 'COOK'),
         ('driver', 'DRIVER'),
         ('gardener', 'GARDENER'),
@@ -16,4 +16,4 @@ class UserForm(forms.Form):
 
     Profession = forms.CharField(widget=forms.Select(choices=jobs))
     location = forms.PointField(widget=LeafletWidget())
-    radius = forms.IntegerField()
+    radius = forms.IntegerField(label="Radius Within (KM)")

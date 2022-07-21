@@ -38,14 +38,23 @@
     <ul>
     {% for worker in workers %}
         {% if worker.profession == profession %}
+
+        {{ counter.increment }}
+
         <li>
-            <p>Name: {{ worker.Name }}<br>Profession: {{worker.profession}}<br>Distance {{worker.distance.km}}KM <br>Phone Number : {{worker.PhoneNumber}}<br> Years of Experience : {{worker.yearsOfExperience}}</p>
+            <p>Name: {{ worker.Name }}<br>Profession: {{worker.profession}}<br>Distance {{worker.distance.km |floatformat:2}}KM <br>Phone Number : {{worker.PhoneNumber}}<br> Years of Experience : {{worker.yearsOfExperience}}</p>
+
         </li>
         {%endif%}
     {% endfor %}
+
+        {% if counter.count == 0 %}
+            <p>No {{profession}}s available within your selected location.</p>
+        {% endif %}
+
     </ul>
     {% else %}
-        <p>No workers available within your selected location</p>
+        <p>No workers available within your selected location.</p>
     {% endif %}
 
 <!--    _____________________________________________________________________-->
