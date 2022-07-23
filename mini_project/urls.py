@@ -18,6 +18,12 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from users import views as user_views
 
+# Use static() to add URL mapping to serve static files during development (only)
+from django.conf import settings
+from django.conf.urls.static import static
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user_register/', user_views.user_register, name='user_register'),
@@ -28,3 +34,6 @@ urlpatterns = [
     path('', include('atYourService.urls')),
     # path('atYourService/', include('atYourService.urls')),
 ]
+
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

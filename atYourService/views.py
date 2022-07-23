@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.gis.db.models.functions import Distance
 from .models import Worker
 from .forms import UserForm
@@ -58,35 +58,38 @@ class Counter:
 
 
 def home(request):
-    if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            try:
-                profession = form.cleaned_data.get('Profession')
-                user_location = form.cleaned_data.get('location')
-                radius = form.cleaned_data.get('radius')
+    if request.user.is_authenticated:
 
-                workers = Worker.objects.filter(Location__dwithin=(user_location, 1.1)).filter(  # 0.1 for 11.1km
-                    Location__distance_lte=(user_location, D(km=radius))).annotate(  # distance 10km
-                    distance=Distance('Location', user_location)).order_by('distance')[0:6]
+        if request.method == 'POST':
+            form = UserForm(request.POST)
+            if form.is_valid():
+                try:
+                    profession = form.cleaned_data.get('Profession')
+                    user_location = form.cleaned_data.get('location')
+                    radius = form.cleaned_data.get('radius')
 
-                context = {'form': form,
-                           'workers': workers,
-                           'profession': profession,
-                           # 'usr_loc': user_location,
-                           'counter': Counter(),
-                           'radius': radius,
-                           }
+                    workers = Worker.objects.filter(Location__dwithin=(user_location, 1.1)).filter(  # 0.1 for 11.1km
+                        Location__distance_lte=(user_location, D(km=radius))).annotate(  # distance 10km
+                        distance=Distance('Location', user_location)).order_by('distance')[0:6]
 
-                return render(request, 'atYourService/home.html', context)
+                    context = {'form': form,
+                               'workers': workers,
+                               'profession': profession,
+                               # 'usr_loc': user_location,
+                               'counter': Counter(),
+                               'radius': radius,
+                               }
 
-            except Exception as e:
-                messages.warning(request, e)
+                    return render(request, 'atYourService/home.html', context)
 
+                except Exception as e:
+                    messages.warning(request, e)
+
+        else:
+            form = UserForm()
+        return render(request, 'atYourService/home.html', {'form': form})
     else:
-        form = UserForm()
-    return render(request, 'atYourService/home.html', {'form': form})
-
+        return redirect('login')
 
 #####################################################################################
 
@@ -95,3 +98,7 @@ def about(request):
         "title": "about",
     }
     return render(request, 'atYourService/about.html', context)
+
+
+def index(request):
+    return render(request, 'atYourService/index.html')

@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <link rel="stylesheet" href="styles.css">-->
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'atYourService/main.css' %}">    <!-- linking CSS -->
+    <title>AtYourService</title>
+</head>
+<body>
+
+    <header class="site-header">      <!-- bootstrap for navbar -->
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+            <div class="container">
+                <a class="navbar-brand mr-4" href="{% url 'ays-home' %}">atYourService</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggle">
+                    <div class="navbar-nav mr-auto">
+                        <a class="nav-item nav-link" href="{% url 'ays-home' %}">Home</a>    <!-- instead of giving path we can refer using url and the name in app url file -->
+                        <a class="nav-item nav-link" href="{% url 'ays-about' %}">About</a>
+                    </div>
+                    <!-- Navbar Right Side -->
+                    <div class="navbar-nav">
+                        {% if user.is_authenticated %}
+                            <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                            <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                        {% else %}
+                            <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                            <a class="nav-item nav-link" href="{% url 'user_register' %}">Register As A User</a>
+                            <a class="nav-item nav-link" href="{% url 'professional_register' %}">Register As A Professional</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+
+    <div class='header'>
+        <h1>A smart way to find & hire Helpers near you.</h1>
+        <div class='header1'>
+            <h2>Easy&Quick</h2>
+            <hr />
+            <h2>Reliable & Affordable</h2>
+        </div>
+        <h4>Find Blue-Collar Workers near you, connect with them directly & hire <br /> anyone you like, without the middlemen in between</h4>
+
+
+
+        <div class='cards'>
+
+            <div class='card'>
+                <a href ="/home">
+                <img class='card-img' src="https://helpersnearme.com/images/icons/house.svg" alt="home" />
+                <p>Domestic Workers</p>
+                </a>
+            </div>
+
+            <div class='card'>
+                <a href ="/home">
+                <img class='card-img' src="https://helpersnearme.com/images/icons/chair.svg" alt="home" />
+                <p>Office Workers</p>
+                </a>
+            </div>
+
+            <div class='card'>
+                <a href ="/home">
+                <img class='card-img' src="https://helpersnearme.com/images/icons/luggage.svg" alt="home" />
+                <p>Expats Workers</p>
+                </a>
+            </div>
+
+            <div class='card'>
+                <a href ="/home">
+                <img class='card-img' src="https://helpersnearme.com/images/icons/car.svg" alt="home" />
+                <p>Drivers</p>
+                </a>
+            </div>
+
+            <div class='card'>
+                <a href ="/home">
+                <img class='card-img' src="	https://helpersnearme.com/images/icons/hospital.svg" alt="home" />
+                <p>Health Care Workers</p>
+                </a>
+            </div>
+
+
+            <div class='card'>
+                <a href ="/home">
+                <img class='card-img' src="https://helpersnearme.com/images/icons/barbershop1.svg" alt="home" />
+                <p>Saloon Workers</p>
+                </a>
+            </div>
+
+
+            <div class='card'>
+                <a href ="/home">
+                <img class='card-img' src="https://helpersnearme.com/images/icons/workers.svg" alt="home" />
+                <p>Construction Workers</p>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+
+    <footer class="text-center text-white fixed-bottom" style="background-color: #000000;">
+  <!-- Grid container -->
+<!--  <div class="container p-4"></div>-->
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-white" href="https://mdbootstrap.com/">atYourService</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
