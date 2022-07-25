@@ -33,15 +33,15 @@
     </div>
 
 
-    <h2>Nearby Workers with in {{radius}}KM</h2>
+    <h2 style="color: black">Nearby Workers with in {{radius}}KM</h2>
     {% if workers %}
-    <ul>
+    <ul class="list-group list-group-flush">
     {% for worker in workers %}
         {% if worker.profession == profession %}
 
         {{ counter.increment }}
 
-        <li>
+        <li class="list-group-item">
             <p>Name: {{ worker.Name }}<br>Profession: {{worker.profession}}<br>Distance {{worker.distance.km |floatformat:2}}KM <br>Phone Number : {{worker.PhoneNumber}}<br> Years of Experience : {{worker.yearsOfExperience}}</p>
 
         </li>
