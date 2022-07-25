@@ -1,11 +1,11 @@
 body {
   background: #fafafa;
   color: #333333;
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+  color: #fff;
 }
 
 ul {
@@ -27,6 +27,13 @@ ul {
 
 .site-header .navbar-nav .nav-link.active {
   font-weight: 500;
+}
+
+.main-container{
+  padding-top:6rem;
+  min-height:100vh;
+
+
 }
 
 .content-section {
@@ -99,12 +106,12 @@ html, body {
     color: white;
     padding-top: 6rem;
     padding-bottom: 3rem;
-    background: url('/static/images/bpic.jpg');
+    background: url('/static/atYourService/bpic.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    /*position: relative;*/
-    min-height: 90vh;
+    position: relative;
+    min-height: 100vh;
 }
 
 .header::after {
@@ -142,7 +149,7 @@ html, body {
 
 .header h4{
     font-size: 2rem;
-    font-weight: 100;
+    font-weight: 300;
     padding: 1rem;
     margin-bottom: 2rem;
 }
@@ -162,6 +169,7 @@ html, body {
     align-items: center;
     justify-content: center;
     margin-top: 1rem;
+    gap:10px;
 }
 
 
@@ -188,9 +196,9 @@ html, body {
     transform: scale(1.1);
 }
 
-.card:not(:last-child) {
+/* .card:not(:last-child) {
     margin-right: 1rem;
-}
+} */
 
 .card-img {
     width: 60px;
@@ -202,4 +210,20 @@ a{
   color: black;
   background-color: transparent;
   text-decoration: none;
+}
+
+.home-container{
+  padding-top: 3rem ;
+  min-height: 100vh;
+}
+/*Mobile Responsive*/
+@media screen and (max-width:500px){
+  .cards{
+    margin:0;
+    flex-direction: column;
+    gap:20px;
+  }
+  /* .card:not(:last-child) {
+    margin-right: none;
+} */
 }
