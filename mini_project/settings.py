@@ -134,7 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'ays-home'
+LOGIN_REDIRECT_URL = 'ays-index'
 LOGIN_URL = 'login'
 
 LEAFLET_CONFIG = {'DEFAULT_CENTER': (9.7, 76.7),  # Latitude ,  Longitude

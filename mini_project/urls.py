@@ -22,8 +22,6 @@ from users import views as user_views
 from django.conf import settings
 from django.conf.urls.static import static
 
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user_register/', user_views.user_register, name='user_register'),
@@ -34,6 +32,5 @@ urlpatterns = [
     path('', include('atYourService.urls')),
     # path('atYourService/', include('atYourService.urls')),
 ]
-
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
