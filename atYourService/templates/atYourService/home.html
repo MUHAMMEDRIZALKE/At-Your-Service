@@ -57,6 +57,12 @@
         <p>No workers available within your selected location.</p>
     {% endif %}
 
+<!--    <a href="{% url 'ays-home'%}" style="color: blue;">Change profession</a>-->
+    <div class="alert alert-light" role="alert">
+        Do you want to <a href="{% url 'ays-home'%}" class="alert-link">change profession</a>?.
+    </div>
+
+
 <!--    _____________________________________________________________________-->
 
 {% else %}
