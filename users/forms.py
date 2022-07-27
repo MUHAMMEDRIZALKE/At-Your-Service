@@ -13,7 +13,7 @@ class UserRegisterForm(forms.Form):
     Username = forms.CharField(max_length=100)
     Name = forms.CharField(max_length=100)
     phoneNumberRegex = RegexValidator(regex=r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")  # indian phone number validator
-    PhoneNumber = forms.CharField(validators=[phoneNumberRegex], max_length=16)
+    PhoneNumber = forms.CharField(validators=[phoneNumberRegex], max_length=16, label="Phone Number")
     Password = forms.CharField(max_length=100, widget=forms.PasswordInput)
 
 
@@ -34,8 +34,8 @@ class ProfessionalRegistrationForm(forms.Form):
     Password = forms.CharField(max_length=100, widget=forms.PasswordInput)
     profession = fm.CharField(max_length=30, widget=forms.Select(choices=pro_choice))
     phoneNumberRegex = RegexValidator(regex=r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")  # indian phone number validator
-    PhoneNumber = fm.CharField(validators=[phoneNumberRegex], max_length=16)
+    PhoneNumber = fm.CharField(validators=[phoneNumberRegex], max_length=16, label="Phone Number")
     whatsappNumberRegex = RegexValidator(regex=r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")  # indian phone number validator
-    whatsappNumber = fm.CharField(validators=[phoneNumberRegex], max_length=16)
-    yearsOfExperience = fm.DecimalField(max_digits=5, decimal_places=1)
+    whatsappNumber = fm.CharField(validators=[phoneNumberRegex], max_length=16, label="Whatsapp Number")
+    yearsOfExperience = fm.DecimalField(max_digits=5, decimal_places=1, label="Years of Experience")
     Location = fm.PointField(widget=LeafletWidget())
