@@ -1,12 +1,9 @@
 from django import forms
 from django.contrib.gis import forms as fm
 from django.contrib.auth.models import User
-from django.forms import ModelForm
-
-from atYourService.models import Client
-from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import RegexValidator
 from leaflet.forms.widgets import LeafletWidget
+from atYourService.models import Client, Worker
 
 
 class UserRegisterForm(forms.Form):
@@ -35,7 +32,27 @@ class ProfessionalRegistrationForm(forms.Form):
     profession = fm.CharField(max_length=30, widget=forms.Select(choices=pro_choice))
     phoneNumberRegex = RegexValidator(regex=r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")  # indian phone number validator
     PhoneNumber = fm.CharField(validators=[phoneNumberRegex], max_length=16, label="Phone Number")
-    whatsappNumberRegex = RegexValidator(regex=r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")  # indian phone number validator
     whatsappNumber = fm.CharField(validators=[phoneNumberRegex], max_length=16, label="Whatsapp Number")
     yearsOfExperience = fm.DecimalField(max_digits=5, decimal_places=1, label="Years of Experience")
     Location = fm.PointField(widget=LeafletWidget())
+
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username']
+
+
+class ProfileWorkerUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Worker
+        fields = ['Name', 'profession', 'PhoneNumber', 'whatsappNumber', 'yearsOfExperience', 'Location']
+        widgets = {
+            'Location': LeafletWidget()
+        }
+
+
+class ProfileUserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ['Name', 'PhoneNumber']

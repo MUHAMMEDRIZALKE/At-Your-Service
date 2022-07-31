@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegisterForm, ProfessionalRegistrationForm
+from .forms import UserRegisterForm, ProfessionalRegistrationForm, UserUpdateForm, ProfileUserUpdateForm, \
+    ProfileWorkerUpdateForm
 from atYourService.models import Client, Worker
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.password_validation import *
 from django.contrib.auth.decorators import login_required
 
@@ -81,4 +81,47 @@ def worker_register(request):
 
 @login_required()
 def profile(request):
-    return render(request, 'users/profile.html')
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        try:
+            pu_form = ProfileUserUpdateForm(request.POST, instance=request.user.client)  # user profile
+
+            if user_form.is_valid() and pu_form.is_valid():
+                user_form.save()
+                pu_form.save()
+                messages.success(request, f"Your account has been update!")
+                return redirect('profile')
+
+            context = {
+                'u_form': user_form,
+                'pu_form': pu_form,
+            }
+
+        except:
+            pw_form = ProfileWorkerUpdateForm(request.POST, instance=request.user.worker)  # worker profile
+            if user_form.is_valid() and pw_form.is_valid():
+                user_form.save()
+                pw_form.save()
+                messages.success(request, f"Your account has been update!")
+                return redirect('profile')
+
+            context = {
+                'u_form': user_form,
+                'pw_form': pw_form,
+            }
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        try:
+            pu_form = ProfileUserUpdateForm(instance=request.user.client)  # user profile
+            context = {
+                'u_form': user_form,
+                'pu_form': pu_form,
+            }
+        except:
+            pw_form = ProfileWorkerUpdateForm(instance=request.user.worker)  # worker profile
+            context = {
+                'u_form': user_form,
+                'pw_form': pw_form,
+            }
+
+    return render(request, 'users/profile.html', context)
