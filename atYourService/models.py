@@ -3,8 +3,6 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 
 
-# Create your models here.
-
 class Client(models.Model):
     Username = models.OneToOneField(User, on_delete=models.CASCADE)
     Name = models.CharField(max_length=100, null=False, default="")
@@ -18,7 +16,6 @@ class Client(models.Model):
 
 
 class Worker(models.Model):
-    
     pro_choice = (
         ('mechanic', 'MECHANIC'),
         ('electrician', 'ELECTRICIAN'),
@@ -29,7 +26,7 @@ class Worker(models.Model):
         ('gardener', 'GARDENER'),
         ('saloon', 'SALOON'),
     )
-    
+
     Username = models.OneToOneField(User, on_delete=models.CASCADE)
     Name = models.CharField(max_length=100)
     profession = models.CharField(max_length=30, choices=pro_choice, default='electrician')
@@ -40,4 +37,3 @@ class Worker(models.Model):
     yearsOfExperience = models.DecimalField(max_digits=5, decimal_places=1)
     Location = models.PointField()
     DateJoined = models.DateTimeField(auto_now_add=True)
-
