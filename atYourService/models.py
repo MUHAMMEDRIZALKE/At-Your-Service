@@ -32,7 +32,6 @@ class Worker(models.Model):
     profession = models.CharField(max_length=30, choices=pro_choice, default='electrician')
     phoneNumberRegex = RegexValidator(regex=r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")  # indian phone number validator
     PhoneNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True, null=False)
-    whatsappNumberRegex = RegexValidator(regex=r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")  # indian phone number validator
     whatsappNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True, null=False)
     yearsOfExperience = models.DecimalField(max_digits=5, decimal_places=1)
     Location = models.PointField()

@@ -32,8 +32,12 @@
         </form>
     </div>
 
-
+    {% if radius %}
     <h2 style="color: black">Nearby Workers with in {{radius}}KM</h2>
+    {%else%}
+    <h2 style="color: black">Nearby Workers</h2>
+    {%endif%}
+
     {% if workers %}
     <ul class="list-group list-group-flush">
     {% for worker in workers %}
