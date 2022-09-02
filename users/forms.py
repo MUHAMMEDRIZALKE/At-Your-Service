@@ -24,6 +24,7 @@ class ProfessionalRegistrationForm(forms.Form):
         ('driver', 'DRIVER'),
         ('gardener', 'GARDENER'),
         ('saloon', 'SALOON'),
+        ('hostel', 'HOSTEL'),
     )
 
     Username = forms.CharField(max_length=100)

@@ -12,6 +12,7 @@ class UserForm(forms.Form):
         ('driver', 'DRIVER'),
         ('gardener', 'GARDENER'),
         ('saloon', 'SALOON'),
+        ('hostel', 'HOSTEL')
     )
 
     Profession = forms.CharField(widget=forms.Select(choices=jobs))

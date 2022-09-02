@@ -25,6 +25,7 @@ class Worker(models.Model):
         ('driver', 'DRIVER'),
         ('gardener', 'GARDENER'),
         ('saloon', 'SALOON'),
+        ('hostel', 'HOSTEL'),
     )
 
     Username = models.OneToOneField(User, on_delete=models.CASCADE)
